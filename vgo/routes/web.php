@@ -13,9 +13,14 @@
 
 //Rota chamando View
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.login');
 });
 
-Route:: get('/login',
-    'loginController@index')-> name('login.index');
+Route::get('/index', function () {
+    return view('home.index');
+});

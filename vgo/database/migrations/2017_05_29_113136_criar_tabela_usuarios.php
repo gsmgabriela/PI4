@@ -25,7 +25,7 @@ class CriarTabelaUsuarios extends Migration
 
             $table->integer('tipo_usuario_id')->unsigned();
 
-            $table->foreign('tipo_usuario_id')->references('id')->on('tipos_de_usuarios')->onDelete('cascade');
+//            $table->foreign('tipo_usuario_id')->references('id')->on('tipos_de_usuarios')->onDelete('cascade');
         });
     }
 

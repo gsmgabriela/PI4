@@ -19,5 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'API'], function(){
     Route::resource('usuarios', 'UsuariosController');
+
     Route::resource('rotas', 'RotasController');
+    Route::get('/rotas/listar/{id}', 'RotasController@showByLocal')->name('rotas.showByLocal');
 });

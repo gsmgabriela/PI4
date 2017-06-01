@@ -84,4 +84,16 @@ class RotasController extends Controller
     {
         //
     }
+
+    /**
+     * Mostra a Rota de acordo com o local.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showByLocal($local_id)
+    {
+        return Rotas::where('locais_id', $local_id)->first();
+    }
+
 }

@@ -24,3 +24,17 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('home.index');
 });
+
+
+//Rotas HOME
+Route:: resource('/home', 'homeController');
+
+//Rotas Para Ponto de encontro
+Route:: resource('/ponto', 'pontoDeEncontroController');
+
+//Rotas Locais
+Route:: resource('/locais', 'locaisController');
+
+//Rotas Locais
+Route:: resource('/predio', 'predioController');
+

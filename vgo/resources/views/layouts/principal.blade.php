@@ -26,15 +26,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="navbar-brand" href="#"><img class="img" src="/css/img/a.png"></a>
+                {{--<a class="navbar-brand" href="#"><img class="img" src="/css/img/a.png"></a>--}}
             </div>
 
             <div class=" navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a class="opcoesMenu" href="#">Dashboard</a></li>
+                    <li class="active"><a class="opcoesMenu" href="@yield( 'home', route('home.index'))">Dashboard</a></li>
+                    <li><a href="@yield( 'ponto', route('ponto.index'))">Ponto de Encontro</a></li></li>
+                    <li><a href="@yield( 'predio', route('predio.index'))">Prédio</a></li></li>
+                    <li><a href="@yield( 'locais', route('locais.index'))">Locais</a></li></li>
+
                     <li><a class="opcoesMenu" href="#">Rotas</a></li>
-                    <li><a class="opcoesMenu" href="#">Tipos de Emergência</a></li>
-                    <li><a class="opcoesMenu" href="#">Ações</a></li>
                     <li><a class="opcoesMenu" href="#">Usuários</a></li>
 
 
@@ -42,9 +44,11 @@
             </div>
 
         </div>
+       <center> <h1 class="tituloPag">@yield('pagina', 'Bem Vindo')</h1></center>
     </div><!-- /container -->
 </div><!-- /navbar wrapper -->
 
+@yield('conteudo')
 
 <!-- FOOTER -->
 
@@ -52,8 +56,5 @@
 </body>
 
 </html>
-
-
-
 
 

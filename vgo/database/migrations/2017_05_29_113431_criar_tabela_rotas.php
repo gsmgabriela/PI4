@@ -24,7 +24,7 @@ class CriarTabelaRotas extends Migration
 
             $table->integer('locais_id')->unsigned();
 
-            $table->foreign('locais_id')->references('id')->on('locais');
+            $table->foreign('locais_id')->references('id')->on('pontoEncontro');
 
 
         });

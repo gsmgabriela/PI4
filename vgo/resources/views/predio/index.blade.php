@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 
-@section('pagina', 'Gerênciamento de Prédios')
+@section('pagina', 'Prédios')
 
 @section('conteudo')
 

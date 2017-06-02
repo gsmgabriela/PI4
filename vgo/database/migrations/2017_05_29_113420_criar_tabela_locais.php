@@ -14,7 +14,7 @@ class CriarTabelaLocais extends Migration
     public function up()
     {
         //
-        Schema::create('pontoEncontro', function (Blueprint $table) {
+        Schema::create('locais', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('nome', 60)->nullable();
@@ -36,6 +36,6 @@ class CriarTabelaLocais extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('pontoEncontro');
+        Schema::dropIfExists('locais');
     }
 }

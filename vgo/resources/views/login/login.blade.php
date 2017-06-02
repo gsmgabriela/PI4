@@ -30,7 +30,7 @@
 
                 </div> <!-- end login -->
 
-                    <img class="logo" src="/css/img/vale-logo.png">
+                    {{--<img class="logo" src="/css/img/vale-logo.png">--}}
 
                     <div class="clearfix"></div>
 

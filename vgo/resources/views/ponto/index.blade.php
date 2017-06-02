@@ -1,7 +1,7 @@
 @extends('layouts.principal')
-@extends('layouts.opcoesPag')
+{{--@extends('layouts.opcoesPag')--}}
 
-@section('pagina', 'Gerênciamento de Ponto de Encontro')
+@section('pagina', 'Ponto de Encontro')
 
 @section('conteudo')
 

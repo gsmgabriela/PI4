@@ -18,12 +18,6 @@ class UsuariosController extends Controller
         return Usuarios::all();
     }
 
-    public function loginUsuario(Request $request, $user, $pwd){
-        return Usuarios::where('usuario', $user)
-                ->where('senha', $pwd)->first();
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *

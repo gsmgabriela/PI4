@@ -30,7 +30,7 @@
     background-color: black;
     width: 100%;
     right: -2em;
-    left: -1em;
+    left: -7em;
 
 }
 
@@ -46,6 +46,7 @@
 
     margin-top: 1em;
     color: whitesmoke;
+    margin-left: 25%;
 }
 
 
@@ -103,13 +104,13 @@
 }
 
 
-
 /*!*FORMULÁRIOS*!*/
 
 .posForm{
-    margin-top: 18em;
+    margin-top: 15em;
     margin-left: 20%;
 }
+
 
 label{
     color: whitesmoke;

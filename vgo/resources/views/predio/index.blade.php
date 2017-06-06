@@ -1,41 +1,69 @@
 @extends('layouts.principal')
-
-@section('pagina', 'Prédios')
-
-@section('conteudo')
-
-    <div class="divFundo">
-
-        <form class="form-horizontal col-sm-10 posForm" action = ""method = "post">
-            <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+@extends('layouts.opcoesPag')
 
 
-            <div class="form-group">
-                <label class="control-label col-sm-2">Nome:</label>
-                <div class="col-sm-5">
-                    <input class="form-control" name="nome" type="text" required></input>
-                </div>
-            </div>
+<div class="divFundo">
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" >Descrição:</label>
-                <div class="col-sm-5">
-                    <input class="form-control" name="descricao" type="text" required></input>
-                </div>
-            </div>
+    @section('pagina', 'Prédios')
+        @section('novo', route('predio.create'))
+    @section('opcoes')
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" >Ponto De Encontro:</label>
-                <div class="col-sm-5">
-                    <input class="form-control" name="ponto" type="text" required></input>
-                </div>
-            </div>
+        <table class="table table-hover">
+            <thead>
 
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-2">
-                    <button type="submit" class="btn btn-primary btn-md bot-salvar">Salvar</button>
-                </div>
-            </div>
-        </form>
-    </div>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ponto de Encontro</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+
+
+            </thead>
+            @forelse($predios as $linha)
+                <tr>
+
+                    <td>{{ $linha->id }} </td>
+                    <td>{{ $linha->nome }} </td>
+                    <td>{{ $linha->descricao }} </td>
+                    <td>{{ $linha->ponto_de_encontro_id}} </td>
+
+
+                    <td>
+                        <form class="form-horizontal" action = "{{route('predio.edit',['id' => $linha->id ])}}">
+                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+                            <input type = "hidden" name = "_method" value = "PATCH">
+                            <div class="col-sm-offset-3 col-sm-2">
+                                <button type="submit" class="btn btn-primary btn-md">\</button>
+                            </div>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form class="form-horizontal" action = "" method = "post">
+                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+                            <input type = "hidden" name = "_method" value = "DELETE">
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-2">
+                                    <button type="submit" class="btn btn-primary btn-md">X</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+
+                </tr>
+
+            @empty
+                <tr>
+                    <td colspan="2"> Nenhum Prédio Cadastrado. </td>
+                </tr>
+
+            @endforelse
+        </table>
+
+
+</div>
+
 @endsection
+

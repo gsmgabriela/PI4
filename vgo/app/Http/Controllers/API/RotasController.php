@@ -96,13 +96,4 @@ class RotasController extends Controller
         return Rotas::where('locais_id', $local_id)->first();
     }
 
-    public function showRotaLocal(){
-        DB::table('rotas')
-            ->select('rotas.nome', 'locais.nome')
-            ->join('locais','locais.id','=','rotas.locais_id')
-//            ->where('links.id','!=',35)
-//            ->where('school_status.academic_year','=','2014-15')
-            ->get();
-    }
-
 }

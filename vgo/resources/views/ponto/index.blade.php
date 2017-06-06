@@ -1,37 +1,65 @@
 @extends('layouts.principal')
-{{--@extends('layouts.opcoesPag')--}}
+@extends('layouts.opcoesPag')
 
-@section('pagina', 'Ponto de Encontro')
-
-@section('conteudo')
 
     <div class="divFundo">
 
-    <form class="form-horizontal col-sm-10 posForm" action = ""method = "post">
-        <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+        @section('pagina', 'Ponto de Encontro')
+        @section('opcoes')
+
+        <table class="table table-hover">
+        <thead>
+
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Editar</th>
+        <th>Excluir</th>
 
 
-        <div class="form-group">
-            <label class="control-label col-sm-2">Nome:</label>
-            <div class="col-sm-5">
-                <input class="form-control" name="nome" type="text" required></input>
-            </div>
-        </div>
+        </thead>
+        @forelse($pontos as $linha)
+            <tr>
 
-        <div class="form-group">
-            <label class="control-label col-sm-2" >Descrição:</label>
-            <div class="col-sm-5">
-                <input class="form-control" name="descricao" type="text" required></input>
-            </div>
-        </div>
+                <td>{{ $linha->id }} </td>
+                <td>{{ $linha->nome }} </td>
+                <td>{{ $linha->descricao }} </td>
 
 
+                <td>
+                    <form class="form-horizontal" action = "{{route('ponto.edit',['id' => $linha->id ])}}">
+                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+                        <input type = "hidden" name = "_method" value = "PATCH">
+                        <div class="col-sm-offset-3 col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-md">\</button>
+                        </div>
+                    </form>
+                </td>
 
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-2">
-                <button type="submit" class="btn btn-primary btn-md bot-salvar">Salvar</button>
-            </div>
-        </div>
-    </form>
+                <td>
+                    <form class="form-horizontal" action = "" method = "post">
+                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+                        <input type = "hidden" name = "_method" value = "DELETE">
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-2">
+                                <button type="submit" class="btn btn-primary btn-md">X</button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+
+            </tr>
+
+        @empty
+            <tr>
+                <td colspan="2"> Nenhum Ponto De Encontro Cadastrado. </td>
+            </tr>
+
+        @endforelse
+    </table>
     </div>
 @endsection
+
+
+

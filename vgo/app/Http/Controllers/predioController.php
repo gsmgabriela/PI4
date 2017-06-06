@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use App\Predio;
+use App\Ponto_de_encontro;
 
 class predioController extends Controller
 {
@@ -14,7 +21,10 @@ class predioController extends Controller
     public function index()
     {
         //
-        return view ('predio.index');
+        $predios= DB::select('select * from predios');
+
+        return view ('predio.index',
+            ['predios' => $predios]);
     }
 
     /**
@@ -25,6 +35,9 @@ class predioController extends Controller
     public function create()
     {
         //
+        $pontos = Ponto_de_encontro::all();
+
+        return view('predio.novo',['todPont'=>$pontos]);
     }
 
     /**
@@ -36,6 +49,23 @@ class predioController extends Controller
     public function store(Request $request)
     {
         //
+        $pontos = Ponto_de_encontro::all();
+
+        $predio = new Predio();
+
+        $predio->nome = Input::get('nome');
+        $predio->descricao = Input::get('descricao');
+        $predio->ponto_de_encontro_id = Input::get('ponto');
+
+        if ($predio-> save()){
+            echo '<script>alert("Prédio Cadastrado com Sucesso");</script>';
+
+            return view('predio.novo', ['todPont' => $pontos ]);
+
+
+        }else{
+            echo '<script>alert("Erro ao Salvar!"); </script>';
+        }
     }
 
     /**
@@ -58,6 +88,12 @@ class predioController extends Controller
     public function edit($id)
     {
         //
+        $pontos = Ponto_de_encontro::all();
+
+        $predio = Predio::where('id', $id)->get();
+        return view('predio.editar',
+            ['predio' => $predio], ['todPont'=>$pontos]);
+
     }
 
     /**

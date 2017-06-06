@@ -32,8 +32,8 @@
             <div class=" navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a class="opcoesMenu" href="@yield( 'home', route('home.index'))">Dashboard</a></li>
-                    <li><a href="@yield( 'ponto', route('ponto.index'))">Ponto de Encontro</a></li></li>
-                    <li><a href="@yield( 'predio', route('predio.index'))">Prédio</a></li></li>
+                    <li><a href="@yield( 'ponto', route('ponto.index'))">Pontos de Encontros</a></li></li>
+                    <li><a href="@yield( 'predio', route('predio.index'))">Prédios</a></li></li>
                     <li><a href="@yield( 'locais', route('locais.index'))">Locais</a></li></li>
 
                     <li><a class="opcoesMenu" href="#">Rotas</a></li>
@@ -44,7 +44,7 @@
             </div>
 
         </div>
-       <center> <h1 class="tituloPag">@yield('pagina', 'Bem Vindo')</h1></center>
+       <h1 class="tituloPag">@yield('pagina', 'Bem Vindo')</h1>
     </div><!-- /container -->
 </div><!-- /navbar wrapper -->
 

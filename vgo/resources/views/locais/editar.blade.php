@@ -1,13 +1,12 @@
-@extends('layouts.opcoesPag')
+@extends('layouts.principal')
 
+@section('pagina', 'Editar Local')
 
-<div class="divFundo">
-    @section('novo', route('locais.create'))
+@section('novo', route('locais.create'))
 
-    @section('pagina', 'Editar Local')
-    @section('conteudo2')
+@section('conteudo')
 
-        <form class="form-horizontal posForm"  action = "{{route('locais.update', ['id' => $local-> id])}}"method = "post">
+    <form class="form-horizontal posForm"  action = "{{route('locais.update', ['id' => $local-> id])}}"method = "post">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
             <input type = "hidden" name = "_method" value = "PATCH">
 
@@ -50,8 +49,5 @@
                 </div>
             </div>
         </form>
-
-
-</div>
 
 @endsection

@@ -26,15 +26,21 @@ Route::get('/index', function () {
 });
 
 
-//Rotas HOME
+//Rota HOME
 Route:: resource('/home', 'homeController');
 
-//Rotas Para Ponto de encontro
+//Rota Para Ponto de encontro
 Route:: resource('/ponto', 'pontoDeEncontroController');
 
-//Rotas Locais
+//Rota Locais
 Route:: resource('/locais', 'locaisController');
 
-//Rotas Locais
+//Rota Locais
 Route:: resource('/predio', 'predioController');
 
+//
+//Route:: get('/predio/lista',
+//    'predioController@index')-> name('predio.chamaIndex');
+
+//Rota Locais
+Route:: resource('/rotas', 'rotasController');

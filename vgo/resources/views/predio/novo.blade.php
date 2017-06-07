@@ -1,14 +1,14 @@
 @extends('layouts.principal')
-{{--@extends('layouts.opcoesPag')--}}
+
+@section('pagina', 'Prédios')
+
+@section('novo', route('predio.create'))
+
+@section('conteudo')
 
 
-<div class="divFundo">
 
-    @section('pagina', 'Prédios')
-    @section('conteudo')
-
-
-        <form class="form-horizontal col-sm-10 posForm" action = "{{route('predio.store')}}"method = "post">
+    <form class="form-horizontal col-sm-10 posForm" action = "{{route('predio.store')}}"method = "post">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
 
 
@@ -49,5 +49,5 @@
                 </div>
             </div>
         </form>
-    </div>
-@endsection
+        @endsection
+

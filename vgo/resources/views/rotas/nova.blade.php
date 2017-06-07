@@ -1,14 +1,14 @@
 @extends('layouts.principal')
-{{--@extends('layouts.opcoesPag')--}}
+
+@section('pagina', 'Cadastrar Rotas')
+
+@section('novo', route('rotas.create'))
+
+@section('conteudo')
 
 
-<div class="divFundo">
 
-    @section('pagina', 'Rota')
-    @section('conteudo')
-
-
-        <form class="form-horizontal col-sm-10 posForm" action = "{{route('rotas.store')}}"method = "post">
+    <form class="form-horizontal col-sm-10 posForm" action = "{{route('rotas.store')}}"method = "post" enctype="multipart/form-data">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
 
 
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" >Descrição:</label>
                 <div class="col-sm-5">
-                    <input class="form-control" name="descricao" type="text" required></input>
+                    <textarea cols="30" rows="5" class="form-control" name="descricao" type="text" required></textarea>
                 </div>
             </div>
 
@@ -30,8 +30,6 @@
                 <label class="control-label col-sm-2" >Mapa Rota:</label>
                 <div class="col-sm-5">
                     <input class="form-control" name="img1" type="file" required></input>
-
-                    <input class="form-control" name="img2" type="file" required></input>
                 </div>
             </div>
 
@@ -58,5 +56,5 @@
                 </div>
             </div>
         </form>
-</div>
+
 @endsection

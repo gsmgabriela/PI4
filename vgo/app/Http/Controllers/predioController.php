@@ -23,8 +23,10 @@ class predioController extends Controller
         //
         $predios= DB::select('select * from predios');
 
+        $pontos = Ponto_de_encontro::all();
+
         return view ('predio.index',
-            ['predios' => $predios]);
+            ['predios' => $predios], ['todPont' => $pontos]);
     }
 
     /**
@@ -90,7 +92,7 @@ class predioController extends Controller
         //
         $pontos = Ponto_de_encontro::all();
 
-        $predio = Predio::where('id', $id)->get();
+        $predio = Predio::find($id);
         return view('predio.editar',
             ['predio' => $predio], ['todPont'=>$pontos]);
 
@@ -106,6 +108,24 @@ class predioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $predio = Predio::find($id);
+
+        $predio -> nome = input::get('nome');
+        $predio -> descricao = input::get('descricao');
+        $predio -> ponto_de_encontro_id = input::get('ponto');
+
+
+        if($predio->save()) {
+
+            echo '<script>alert("Dados Atualizados com Sucesso!");</script>';
+
+            return redirect(route('predio.index'));
+        }
+        else {
+            echo '<script>alert("Erro na atualização!");</script>';
+
+            return redirect(route('predio.index'));
+        }
     }
 
     /**

@@ -1,14 +1,13 @@
 @extends('layouts.principal')
-@extends('layouts.opcoesPag')
+
+@section('pagina', 'Editar Prédios')
+
+@section('novo', route('predio.create'))
+
+@section('conteudo')
 
 
-<div class="divFundo">
-
-    @section('pagina', 'Prédios')
-    @section('opcoes', route('predio.index'))
-
-
-        <form class="form-horizontal posForm"  action = "{{route('predio.update', ['id' => $predio->id ])}}"method = "post">
+    <form class="form-horizontal col-sm-10 posForm"  action = "{{route('predio.update', ['id' => $predio-> id])}}"method = "post">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
             <input type = "hidden" name = "_method" value = "PATCH">
 
@@ -34,7 +33,7 @@
                     <select class="form-control" name="ponto" type= required>
                         @forelse($todPont as $ponto)
                             @if($ponto -> id ==$predio->ponto_de_encontro_id)
-                                <option value="{{$ponto-> id}}" id="ponto" selected>{{$ponto> nome}}</option>
+                                <option value="{{$ponto-> id}}" id="ponto" selected>{{$ponto-> nome}}</option>
                             @else
                                 <option value="{{ $ponto -> id }}" id="ponto">{{ $ponto -> nome }}</option>
                             @endif
@@ -50,10 +49,6 @@
                     <button type="submit" class="btn btn-primary btn-md bot-salvar">Salvar</button>
                 </div>
             </div>
-        </form>
-
-
-</div>
-
+    </form>
 
 @endsection

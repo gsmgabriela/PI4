@@ -1,12 +1,10 @@
-@extends('layouts.opcoesPag')
+@extends('layouts.principal')
 
+@section('pagina', 'Rotas')
 
-<div class="divFundo">
+@section('novo', route('rotas.create'))
 
-    @section('pagina', 'Rotas')
-    @section('novo', route('rotas.create'))
-    @section('conteudo2')
-
+@section('conteudo')
 
 
     <table class="table table-hover">
@@ -15,12 +13,13 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
-            <th>Local</th>
-            <th>Editar</th>
-            <th>Excluir</th>
+            <th>Local de Fuga</th>
+            <th><center>Editar</center></th>
+            <th><center>Excluir</center></th>
 
 
             </thead>
+        <tbody>
             @forelse($rotas as $linha)
                 <tr>
 
@@ -28,30 +27,38 @@
                     <td>{{ $linha->id }} </td>
                     <td>{{ $linha->nome }} </td>
                     <td>{{ $linha->descricao }} </td>
-                    <td>{{ $linha->locais_id}} </td>
+
+                    @forelse($todLoc as $local)
+                        @if($local -> id ==$linha->locais_id)
+                            <td>{{$local-> nome}}</td>
+                        @endif
+                    @empty
+                    @endforelse
 
 
                     <td>
-                        <form class="form-horizontal" action = "{{route('rotas.edit',['id' => $linha->id ])}}">
+                        <center>  <form class="form-horizontal" action = "{{route('rotas.edit',['id' => $linha->id ])}}">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
                             <input type = "hidden" name = "_method" value = "PATCH">
                             <div class="col-sm-offset-3 col-sm-2">
-                                <button type="submit" class="btn btn-primary btn-md">\</button>
+                                <button type="submit" class="btn btn-primary btn-md edit">\</button>
                             </div>
                         </form>
+                        </center>
                     </td>
 
                     <td>
-                        <form class="form-horizontal" action = "" method = "post">
+                       <center> <form class="form-horizontal" action = "" method = "post">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
                             <input type = "hidden" name = "_method" value = "DELETE">
 
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-md">X</button>
+                                    <button type="submit" class="btn btn-primary btn-md del">X</button>
                                 </div>
                             </div>
                         </form>
+                       </center>
                     </td>
 
                 </tr>
@@ -62,9 +69,10 @@
                 </tr>
 
             @endforelse
-        </table>
+        </tbody>
+    </table>
 
-        @endsection
-</div>
+@endsection
+
 
 

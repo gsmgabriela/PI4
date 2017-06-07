@@ -85,7 +85,7 @@
     ================================================== -->
 
 
-        <div class="col-md-3  lateral">
+        <div class="col-md-2  espacolista">
             <div class="  affix">
                 <div class="well ">
                     <ul class="nav ">

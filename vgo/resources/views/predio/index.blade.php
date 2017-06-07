@@ -1,14 +1,13 @@
 @extends('layouts.principal')
-@extends('layouts.opcoesPag')
+
+@section('pagina', 'Prédios')
+
+@section('novo', route('predio.create'))
+
+@section('conteudo')
 
 
-<div class="divFundo">
-
-    @section('pagina', 'Prédios')
-        @section('novo', route('predio.create'))
-    @section('opcoes')
-
-        <table class="table table-hover">
+    <table class="table table-hover">
             <thead>
 
             <th>ID</th>
@@ -26,8 +25,13 @@
                     <td>{{ $linha->id }} </td>
                     <td>{{ $linha->nome }} </td>
                     <td>{{ $linha->descricao }} </td>
-                    <td>{{ $linha->ponto_de_encontro_id}} </td>
 
+                    @forelse($todPont as $ponto)
+                        @if($ponto -> id ==$linha->ponto_de_encontro_id)
+                            <td>{{$ponto-> nome}}</td>
+                        @endif
+                    @empty
+                    @endforelse
 
                     <td>
                         <form class="form-horizontal" action = "{{route('predio.edit',['id' => $linha->id ])}}">
@@ -60,10 +64,9 @@
                 </tr>
 
             @endforelse
-        </table>
-
-
-</div>
-
+    </table>
 @endsection
+
+
+
 

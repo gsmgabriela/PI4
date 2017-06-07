@@ -1,11 +1,11 @@
 @extends('layouts.principal')
-{{--@extends('layouts.opcoesPag')--}}
 
+@section('pagina', 'Cadastrar Local')
 
-<div class="divFundo">
+@section('novo', route('locais.create'))
 
-    @section('pagina', 'Cadastrar Locais')
-    @section('conteudo')
+@section('conteudo')
+
 
 
     <form class="form-horizontal col-sm-10 posForm" action = "{{route('locais.store')}}"method = "post">
@@ -48,5 +48,5 @@
                 </div>
             </div>
         </form>
-    </div>
+
 @endsection

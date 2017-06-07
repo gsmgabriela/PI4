@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +8,17 @@
 
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/menu.css" rel="stylesheet">
+    <link href="/css/opcoes.css" rel="stylesheet">
 
     <title>V-Go HOME - @yield('titulo', 'Home Page')</title> <!-- yield recebe váriavel -->
 </head>
+
 
 <body>
 
 
 <div class="navbar-wrapper">
-    <div class="container">
+
         <div class="navbar navbar-inverse navbar-static-top">
 
             <div class="navbar-header">
@@ -31,12 +32,13 @@
 
             <div class=" navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a class="opcoesMenu" href="@yield( 'home', route('home.index'))">Dashboard</a></li>
+                    <li class="active"><a class="opcoesMenu" href="@yield( 'home', route('home.index'))">Home</a></li>
                     <li><a href="@yield( 'ponto', route('ponto.index'))">Pontos de Encontros</a></li></li>
                     <li><a href="@yield( 'predio', route('predio.index'))">Prédios</a></li></li>
                     <li><a href="@yield( 'locais', route('locais.index'))">Locais</a></li></li>
+                    <li><a href="@yield( 'rotas', route('rotas.index'))">Rotas</a></li></li>
 
-                    <li><a class="opcoesMenu" href="#">Rotas</a></li>
+
                     <li><a class="opcoesMenu" href="#">Usuários</a></li>
 
 
@@ -45,13 +47,26 @@
 
         </div>
        <h1 class="tituloPag">@yield('pagina', 'Bem Vindo')</h1>
-    </div><!-- /container -->
+    {{--</div><!-- /container -->--}}
 </div><!-- /navbar wrapper -->
 
+
+
+{{--<ul class="opcoesPag">--}}
+    {{--<li><a href="@yield( 'novo', route('ponto.create'))">Adicionar Novo</a></li>--}}
+{{--</ul>--}}
+
+<form class="form-horizontal adicionar" action = "@yield( 'novo', route('ponto.create'))" >
+    <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-2">
+            <button type="submit" class="btn btn-primary btn-md add">Adicionar Novo</button>
+        </div>
+    </div>
+</form>
+
 @yield('conteudo')
-
-<!-- FOOTER -->
-
 
 </body>
 

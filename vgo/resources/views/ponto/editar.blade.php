@@ -1,18 +1,13 @@
 @extends('layouts.principal')
-@extends('layouts.opcoesPag')
 
-@section('novo', route('ponto.create'))
-{{--@section('buscar',  route('ponto.show'))--}}
-@section('listar',  route('ponto.index'))
+@section('pagina', 'Editar Local')
 
+@section('novo', route('locais.create'))
 
-<div class="divFundo">
-
-    @section('pagina', 'Ponto de Encontro')
-    @section('opcoes')
+@section('conteudo')
 
 
-        <form class="form-horizontal posForm"  action = "{{route('ponto.update', ['id' => $dados->id ])}}"method = "post">
+    <form class="form-horizontal posFormEdit"  action = "{{route('ponto.update', ['id' => $dados->id ])}}"method = "post">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
             <input type = "hidden" name = "_method" value = "PATCH">
 
@@ -32,17 +27,20 @@
             </div>
 
             <div class="form-group">
+                <label class="control-label col-sm-2">Ponto de Encontro:</label>
+                <div class="col-sm-5">
+                    <input class="form-control" name="ponto" value="{{$dados->img1}}" type="file" >{{$dados->img1}}</input>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-2">
                     <button type="submit" class="btn btn-primary btn-md bot-salvar">Salvar</button>
                 </div>
             </div>
         </form>
+    <center><p class="oPredio"><img  width="380" height="300" src="/{{ $dados -> img1 }}"name="rotaVelha"></img></p></center>
+        @endsection
 
 
-        </form>
 
-
-</div>
-
-
-@endsection

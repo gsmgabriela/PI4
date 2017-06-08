@@ -24,6 +24,10 @@ Route::group(['namespace' => 'API'], function(){
 
     Route::resource('rotas', 'RotasController');
     Route::get('/rotas/listar/{id}', 'RotasController@showByLocal')->name('rotas.showByLocal');
+//    Route::get('/rotas/showRotaLocal', 'RotasController@showRotaLocal')->name('rotas.showRotaLocal');
 
+    Route::resource('locais', 'LocalController');
+//    Route::get('locais', 'LocalController@index');
+//    Route::get('locais/{id}', 'LocalController@show');
 });
 

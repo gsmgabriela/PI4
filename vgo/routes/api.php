@@ -19,15 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'API'], function(){
     Route::resource('usuarios', 'UsuariosController');
-    Route::get('usuarios/login/{usuario}/{senha}', 'UsuariosController@loginUsuario')->name('usuarios.loginUsuario');
-
 
     Route::resource('rotas', 'RotasController');
     Route::get('/rotas/listar/{id}', 'RotasController@showByLocal')->name('rotas.showByLocal');
+
 //    Route::get('/rotas/showRotaLocal', 'RotasController@showRotaLocal')->name('rotas.showRotaLocal');
 
     Route::resource('locais', 'LocalController');
 //    Route::get('locais', 'LocalController@index');
 //    Route::get('locais/{id}', 'LocalController@show');
-});
 
+});

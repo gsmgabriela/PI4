@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Rotas;
+use App\Rota;
 
 
 class RotasController extends Controller
@@ -16,7 +16,7 @@ class RotasController extends Controller
      */
     public function index()
     {
-        return Rotas::all();
+        return Rota::all();
     }
 
     /**
@@ -48,7 +48,7 @@ class RotasController extends Controller
      */
     public function show($id)
     {
-        return Rotas::find($id);
+        return Rota::find($id);
     }
 
     /**
@@ -93,16 +93,7 @@ class RotasController extends Controller
      */
     public function showByLocal($local_id)
     {
-        return Rotas::where('locais_id', $local_id)->first();
-    }
-
-    public function showRotaLocal(){
-        DB::table('rotas')
-            ->select('rotas.nome', 'locais.nome')
-            ->join('locais','locais.id','=','rotas.locais_id')
-//            ->where('links.id','!=',35)
-//            ->where('school_status.academic_year','=','2014-15')
-            ->get();
+        return Rota::where('locais_id', $local_id)->first();
     }
 
 }

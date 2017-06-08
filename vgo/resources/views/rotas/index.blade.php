@@ -1,41 +1,43 @@
 @extends('layouts.principal')
 
-@section('pagina', 'Locais')
+@section('pagina', 'Rotas')
 
-@section('novo', route('locais.create'))
+@section('novo', route('rotas.create'))
 
 @section('conteudo')
 
 
-    <table class="table table-hover posTable">
+    <table class="table table-hover">
             <thead>
 
             <th>ID</th>
             <th>Nome</th>
-            <th>Andar</th>
-            <th>Prédio</th>
+            <th>Descrição</th>
+            <th>Local de Fuga</th>
             <th><center>Editar</center></th>
             <th><center>Excluir</center></th>
 
 
             </thead>
-            @forelse($locais as $linha)
+        <tbody>
+            @forelse($rotas as $linha)
                 <tr>
 
 
                     <td>{{ $linha->id }} </td>
                     <td>{{ $linha->nome }} </td>
-                    <td>{{ $linha->andar }} </td>
+                    <td>{{ $linha->descricao }} </td>
 
-                    @forelse($todPred as $predio)
-                        @if($predio -> id ==$linha->predio_id)
-                            <td>{{$predio-> nome}}</td>
+                    @forelse($todLoc as $local)
+                        @if($local -> id ==$linha->locais_id)
+                            <td>{{$local-> nome}}</td>
                         @endif
                     @empty
                     @endforelse
+
+
                     <td>
-                        <center>
-                        <form class="form-horizontal" action = "{{route('locais.edit',['id' => $linha->id ])}}">
+                        <center>  <form class="form-horizontal" action = "{{route('rotas.edit',['id' => $linha->id ])}}">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
                             <input type = "hidden" name = "_method" value = "PATCH">
                             <div class="col-sm-offset-3 col-sm-2">
@@ -46,8 +48,7 @@
                     </td>
 
                     <td>
-                        <center>
-                        <form class="form-horizontal" action = "" method = "post">
+                       <center> <form class="form-horizontal" action = "" method = "post">
                             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
                             <input type = "hidden" name = "_method" value = "DELETE">
 
@@ -57,20 +58,21 @@
                                 </div>
                             </div>
                         </form>
-                        </center>
+                       </center>
                     </td>
 
                 </tr>
 
             @empty
                 <tr>
-                    <td colspan="2"> Nenhum Prédio Cadastrado. </td>
+                    <td colspan="2"> Nenhuma Rota Cadastrada. </td>
                 </tr>
 
             @endforelse
-        </table>
+        </tbody>
+    </table>
 
-        @endsection
+@endsection
 
 
 

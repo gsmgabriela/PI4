@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Tipos_de_usuarios;
 use App\Usuario;
+use Illuminate\Http\Request;
+use App\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
-class UsuariosController extends Controller
+
+class usuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +20,14 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return Usuario::all();
+        //
+        $usuarios = DB::select('select * from usuarios');
+
+        $tipos= Tipos_de_usuarios::all();
+
+
+        return view ('usuarios.index',
+            ['usuarios' => $usuarios],['todTipo' => $tipos]);
     }
 
     /**
@@ -25,7 +37,10 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        //
+
+        $tipos = Tipos_de_usuarios::all();
+
+        return view('usuarios.novo', ['todTipo' => $tipos]);
     }
 
     /**
@@ -37,6 +52,32 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         //
+//        return "cheguei cheguei chegando bagunçando a zorra toda";
+
+        $usuario = new Usuario();
+
+        $usuario->nome = Input::get('nome');
+        $usuario->cpf = Input::get('cpf');
+        $usuario->usuario = Input::get('usuario');
+        $usuario->senha = Input::get('senha');
+        $usuario->tipo_usuario_id = Input::get('tipo');
+
+
+
+        if ($usuario-> save()){
+            $tipos = Tipos_de_usuarios::all();
+            $usuarios = Usuario::all();
+
+            echo '<script>alert("Usuário Cadastrado com Sucesso");</script>';
+            return view ('usuarios.index',
+                ['usuarios' => $usuarios], ['todTipo' => $tipos]);
+
+
+        }else{
+            echo '<script>alert("Erro ao Salvar!"); </script>';
+        }
+
+
     }
 
     /**
@@ -47,7 +88,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        return Usuario::find($id);
+        //
     }
 
     /**

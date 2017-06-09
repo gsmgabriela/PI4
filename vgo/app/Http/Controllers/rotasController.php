@@ -53,8 +53,6 @@ class rotasController extends Controller
     public function store(Request $request)
     {
 
-        $locais = Locais::all();
-
         $imagem = $request->file('img1');
 
         $pasta = public_path() . '/imagens';
@@ -75,8 +73,12 @@ class rotasController extends Controller
         if ($rota->save()) {
             echo '<script>alert("Rota Cadastrada com Sucesso");</script>';
 
-            return view('rotas.nova', ['todLoc' => $locais]);
 
+            $locais = Locais::all();
+            $rotas = Rota::all();
+
+                       return view ('rotas.index',
+                ['rotas' => $rotas], ['todLoc' => $locais]);
 
         } else {
             echo '<script>alert("Erro ao Salvar!"); </script>';
@@ -125,7 +127,7 @@ class rotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         //
         $locais = Locais::all();
@@ -145,13 +147,24 @@ class rotasController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $imagem = $request->file('img1');
+
+        $pasta = public_path() . '/imagens';
+
+        $nome_imagem = 'rota' . time() . '.' . $imagem->getClientOriginalExtension();
+
+        $nova_imagem = $imagem->move($pasta, $nome_imagem);
+        $sub_var = substr($nova_imagem,34);
+//        return response()-> json($sub_var);
+
+
         $rota = Rota::find($id);
 
         $rota -> nome = input::get('nome');
         $rota -> descricao = input::get('descricao');
         $rota -> locais_id = input::get('local');
-        $rota -> img1 = input::get('img1');
-        $rota -> img2 = input::get('img2');
+        $rota->img1 = $sub_var;
 
 
         if($rota->save()) {

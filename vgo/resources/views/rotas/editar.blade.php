@@ -7,7 +7,7 @@
 @section('conteudo')
 
 
-    <form class="form-horizontal posFormEdit"  action = "{{route('rotas.update', ['id' => $rota-> id])}}"method = "post">
+    <form class="form-horizontal posFormEdit"  action = "{{route('rotas.update', ['id' => $rota-> id])}}"method = "post" enctype="multipart/form-data">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
             <input type = "hidden" name = "_method" value = "PATCH">
 
@@ -57,5 +57,5 @@
             </div>
         </form>
 
-    <center><p class="oMapa"><img  width="380" height="300" src="/{{ $rota -> img1 }}"name="rotaVelha"></img></p></center>
+    <center><p class="oMapa"><img  width="380" height="286" src="/{{ $rota -> img1 }}"name="rotaVelha"></img></p></center>
 @endsection

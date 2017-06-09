@@ -35,12 +35,14 @@ Route:: resource('/ponto', 'pontoDeEncontroController');
 //Rota Locais
 Route:: resource('/locais', 'locaisController');
 
-//Rota Locais
+//Rota Predio
 Route:: resource('/predio', 'predioController');
 
-//
-//Route:: get('/predio/lista',
-//    'predioController@index')-> name('predio.chamaIndex');
-
-//Rota Locais
+//Rota Rotas
 Route:: resource('/rotas', 'rotasController');
+
+//Rota Tipos de Usuários
+Route:: resource('/tipo_usuario', 'tipo_usuarioController');
+
+//Rota Usuários
+Route:: resource('/usu', 'usuController');

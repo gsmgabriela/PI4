@@ -55,8 +55,8 @@ body{
 
     margin-top: 1em;
     color: whitesmoke;
-    margin-left: 1%;
-    width: 10em;
+    margin-left: 8%;
+    min-width: 20em;
 }
 .tituloIndex{
     margin-top: 1em;
@@ -75,29 +75,19 @@ li{
     list-style:none;
 
 }
-.opcoesPag > li > a{
-    background-color: forestgreen;
-    color: palegreen;
-    border-bottom-right-radius: 5%;
-    border-bottom-left-radius: 5%;
-    border-top-left-radius: 5%;
-    border-top-right-radius: 5%;
-}
 
-.adicionar{
-    margin-top: -5em;
+.add{
+
+    margin-top: 10em;
     float: right;
     margin-right: 2%;
-    padding-bottom: 4em;
-}
-.add{
     background-color: forestgreen;
     color: palegreen;
     border: transparent;
 }
 
 .edit{
-       background-color: dodgerblue;
+    background-color: dodgerblue;
 }
 
 .del{
@@ -111,8 +101,8 @@ li{
 .add:hover{
     background-color: lightgreen;
 }
-.table{
-    margin-top: 15em;
+table{
+    margin-top: 2em;
 }
 
 table thead{
@@ -171,21 +161,21 @@ tbody td{
 /*!*FORMULÁRIOS*!*/
 
 .posForm{
-    margin-top: 15em;
+    margin-top: 2em;
     margin-left: 20%;
 }
 .posFormEdit{
-    margin-top: 18em;
+    margin-top: 2em;
     margin-left: 0%;
 }
 .oMapa{
-    margin-top: -28em;
+    margin-top: -26em;
     margin-left: 30%;
 }
 
 .oPredio{
 
-    margin-top: -15em;
+    margin-top: -16em;
     margin-left: 30%;
 }
 

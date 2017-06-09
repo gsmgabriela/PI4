@@ -1,13 +1,13 @@
 @extends('layouts.principal')
 
-@section('pagina', 'Cadastrar Pontos de Encontro')
+@section('pagina', 'Cadastrar Ponto de Encontro')
 
 @section('novo', route('ponto.create'))
 
 @section('conteudo')
 
 
-    <form class="form-horizontal col-sm-10 posForm" action = "{{route('ponto.store')}}"method = "post">
+    <form class="form-horizontal col-sm-10 posForm" action = "{{route('ponto.store')}}"method = "post" enctype="multipart/form-data">
         <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
 
 
@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2">Ponto de Encontro:</label>
             <div class="col-sm-5">
-                <input class="form-control" name="imagem" type="file" required></input>
+                <input class="form-control" name="img1" type="file" required></input>
             </div>
         </div>
 

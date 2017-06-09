@@ -1,13 +1,13 @@
 @extends('layouts.principal')
 
-@section('pagina', 'Editar Local')
+@section('pagina', 'Editar Ponto de Encontro')
 
-@section('novo', route('locais.create'))
+@section('novo', route('ponto.create'))
 
 @section('conteudo')
 
 
-    <form class="form-horizontal posFormEdit"  action = "{{route('ponto.update', ['id' => $dados->id ])}}"method = "post">
+    <form class="form-horizontal posFormEdit"  action = "{{route('ponto.update', ['id' => $dados->id ])}}"method = "post" enctype="multipart/form-data">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
             <input type = "hidden" name = "_method" value = "PATCH">
 
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </form>
-    <center><p class="oPredio"><img  width="380" height="300" src="/{{ $dados -> img1 }}"name="rotaVelha"></img></p></center>
+    <center><p class="oPredio"><img  width="380" height="300" src="/{{ $dados -> img1 }}"name="pontoVelho"></img></p></center>
         @endsection
 
 

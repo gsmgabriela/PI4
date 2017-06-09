@@ -62,9 +62,11 @@ class predioController extends Controller
         if ($predio-> save()){
             echo '<script>alert("Prédio Cadastrado com Sucesso");</script>';
 
-            return view('predio.novo', ['todPont' => $pontos ]);
 
+            $predios = Predio::all();
 
+            return view ('predio.index',
+                ['predios' => $predios], ['todPont' => $pontos]);
         }else{
             echo '<script>alert("Erro ao Salvar!"); </script>';
         }

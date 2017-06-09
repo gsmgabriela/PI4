@@ -50,16 +50,32 @@ class pontoDeEncontroController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $ponto = new Ponto_de_encontro();
 
+        $imagem = $request->file('img1');
+
+        $pasta = public_path() . '/imagensPonto';
+
+        $nome_imagem = 'ponto' . time() . '.' . $imagem->getClientOriginalExtension();
+
+        // Move arquivo para pasta
+        $nova_imagem = $imagem->move($pasta, $nome_imagem);
+        $sub_var = substr($nova_imagem,34);
+//        return response()-> json($sub_var);
+
+        $ponto = new Ponto_de_encontro();
         $ponto->nome = Input::get('nome');
         $ponto->descricao = Input::get('descricao');
+        $ponto->img1 = $sub_var;
+
 
         if ($ponto-> save()){
             echo '<script>alert("Ponto de Encontro Salvo com Sucesso!");</script>';
 
-            return view('ponto.novo');
+
+            $pontos = Ponto_de_encontro::all();
+
+            return view ('ponto.index',
+                ['pontos' => $pontos]);
 
 
         }else{
@@ -104,13 +120,25 @@ class pontoDeEncontroController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $imagem = $request->file('img1');
+
+        $pasta = public_path() . '/imagensPonto';
+
+        $nome_imagem = 'ponto' . time() . '.' . $imagem->getClientOriginalExtension();
+
+        // Move arquivo para pasta
+        $nova_imagem = $imagem->move($pasta, $nome_imagem);
+        $sub_var = substr($nova_imagem,34);
+
         $ponto = Ponto_de_encontro::find($id);
 
         $ponto -> nome = input::get('nome');
         $ponto -> descricao = input::get('descricao');
+        $ponto ->img1 = $sub_var;
 
 
-       if($ponto->save()) {
+        if($ponto->save()) {
 
            echo '<script>alert("Dados Atualizados com Sucesso!");</script>';
 

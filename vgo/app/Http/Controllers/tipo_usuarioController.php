@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
+
+
+use App\Tipos_de_usuarios;
 use Illuminate\Http\Request;
+use App\User;
 use App\Http\Controllers\Controller;
-use App\Usuario;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
-class UsuariosController extends Controller
+
+class tipo_usuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +21,11 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return Usuario::all();
+        //
+        $tipos = DB::select('select * from tipos_de_usuarios');
+
+        return view ('tipos_usuarios.index', ['tipos' => $tipos]);
+
     }
 
     /**
@@ -26,6 +36,8 @@ class UsuariosController extends Controller
     public function create()
     {
         //
+        return view ('tipos_usuarios.novo');
+
     }
 
     /**
@@ -37,6 +49,23 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         //
+
+        $tipo = new Tipos_de_usuarios();
+
+        $tipo->tipo = Input::get('tipo');
+        $tipo->descricao = Input::get('descricao');
+
+        if ($tipo-> save()){
+            echo '<script>alert("Tipo salvo com sucesso");</script>';
+
+            $tipos = Tipos_de_usuarios::all();
+
+            return view('tipos_usuarios.index', ['tipos' => $tipos ]);
+
+
+        }else{
+            echo '<script>alert("Erro ao Salvar!"); </script>';
+        }
     }
 
     /**
@@ -47,7 +76,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        return Usuario::find($id);
+        //
     }
 
     /**

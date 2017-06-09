@@ -50,6 +50,7 @@ class locaisController extends Controller
     {
         //
         $predios = Predio::all();
+        $locais = Locais::all();
 
         $local = new Locais();
 
@@ -58,17 +59,14 @@ class locaisController extends Controller
         $local->predio_id = Input::get('predio');
 
         if ($local-> save()){
-            echo '<script>alert(Locais");</script>';
+            echo '<script>alert("Local salvo com sucesso");</script>';
 
-            return view('locais.index', ['todPred' => $predios ]);
+            return view('locais.index', ['todPred' => $predios ],['locais' => $locais]);
 
 
         }else{
             echo '<script>alert("Erro ao Salvar!"); </script>';
         }
-
-
-
 
 
     }

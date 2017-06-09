@@ -8,7 +8,6 @@
 
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/menu.css" rel="stylesheet">
-    <link href="/css/opcoes.css" rel="stylesheet">
 
     <title>V-Go HOME - @yield('titulo', 'Home Page')</title> <!-- yield recebe váriavel -->
 </head>
@@ -33,15 +32,12 @@
             <div class=" navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a class="opcoesMenu" href="@yield( 'home', route('home.index'))">Home</a></li>
-                    <li><a href="@yield( 'ponto', route('ponto.index'))">Pontos de Encontros</a></li></li>
-                    <li><a href="@yield( 'predio', route('predio.index'))">Prédios</a></li></li>
-                    <li><a href="@yield( 'locais', route('locais.index'))">Locais</a></li></li>
-                    <li><a href="@yield( 'rotas', route('rotas.index'))">Rotas</a></li></li>
-
-
-                    <li><a class="opcoesMenu" href="#">Usuários</a></li>
-
-
+                    <li><a href="@yield( 'ponto', route('ponto.index'))">Pontos de Encontros</a></li>
+                    <li><a href="@yield( 'predio', route('predio.index'))">Prédios</a></li>
+                    <li><a href="@yield( 'locais', route('locais.index'))">Locais</a></li>
+                    <li><a href="@yield( 'rotas', route('rotas.index'))">Rotas</a></li>
+                    <li><a href="@yield( 'usu', route('usu.index'))">Usuários</a></li>
+                    <li><a href="@yield( 'tipo_usuario', route('tipo_usuario.index'))">Tipos de Usuários</a></li>
                 </ul>
             </div>
 
@@ -52,15 +48,11 @@
 
 
 
-{{--<ul class="opcoesPag">--}}
-    {{--<li><a href="@yield( 'novo', route('ponto.create'))">Adicionar Novo</a></li>--}}
-{{--</ul>--}}
-
-<form class="form-horizontal adicionar" action = "@yield( 'novo', route('ponto.create'))" >
+<form class="form-horizontal" action = "@yield( 'novo', route('usu.create'))" >
     <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>">
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-2">
+        <div class=" ">
             <button type="submit" class="btn btn-primary btn-md add">Adicionar Novo</button>
         </div>
     </div>

@@ -100,6 +100,12 @@ class usuController extends Controller
     public function edit($id)
     {
         //
+        $tipos = Tipos_de_usuarios::all();
+
+        $usuario = Usuario::find($id);
+
+        return view('usuarios.editar',
+            ['todTipo' => $tipos], ['usuario'=>$usuario]);
     }
 
     /**
@@ -112,6 +118,35 @@ class usuController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $usuario = Usuario::find($id);
+
+        $usuario -> nome = input::get('nome');
+        $usuario -> cpf = input::get('cpf');
+        $usuario -> usuario = input::get('usuario');
+        $usuario -> senha = input::get('senha');
+        $usuario -> tipo_usuario_id = input::get('tipo');
+
+        $tipos= Tipos_de_usuarios::all();
+        $usuarios= Usuario::all();
+
+
+        if($usuario->save()) {
+            
+            $tipos= Tipos_de_usuarios::all();
+            $usuarios= Usuario::all();
+
+            echo '<script>alert("Dados Atualizados com Sucesso!");</script>';
+
+            return view ('usuarios.index',
+                ['usuarios' => $usuarios],['todTipo' => $tipos]);
+        }
+        else {
+            echo '<script>alert("Erro na atualização!");</script>';
+
+
+            return view ('usuarios.index',
+                ['usuarios' => $usuarios],['todTipo' => $tipos]);
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Telefone;
 use App\Usuario;
 use Illuminate\Http\Request;
 use App\User;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 
-class homeController extends Controller
+class telefoneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +21,6 @@ class homeController extends Controller
     public function index()
     {
         //
-        $telefones= DB::select('select * from telefones');
-
-        $usuarios = Usuario::all();
-
-        return view ('layouts.corpoHome',
-            ['todTel' => $telefones], ['todUsu' => $usuarios]);
     }
 
     /**
@@ -36,6 +31,9 @@ class homeController extends Controller
     public function create()
     {
         //
+        $usuarios = Usuario::all();
+
+        return view('telefones.novo',['todUsu'=>$usuarios]);
     }
 
     /**
@@ -47,6 +45,39 @@ class homeController extends Controller
     public function store(Request $request)
     {
         //
+        $telefone = new Telefone();
+        $telefone->tel1 = Input::get('tel1');
+        $telefone->tel2 = Input::get('tel2');
+        $telefone->usuario_id = Input::get('usuario');
+
+
+        $usuario = Telefone::find($telefone->usuario_id);
+
+        if ($usuario != null) {
+
+            echo '<script>alert("Já Possui Telefone Cadastrado!");</script>';
+
+            $telefones = Telefone::all();
+            $usuarios = Usuario::all();
+
+            return view('layouts.corpoHome',
+                ['todTel' => $telefones], ['todUsu' => $usuarios]);
+
+        } else {
+
+
+            if ($telefone->save()) {
+                echo '<script>alert("Telefone Adicionado com Sucesso!");</script>';
+
+                $telefones = Telefone::all();
+                $usuarios = Usuario::all();
+
+                return view('layouts.corpoHome',
+                    ['todTel' => $telefones], ['todUsu' => $usuarios]);
+            } else {
+                echo '<script>alert("Erro ao Salvar!"); </script>';
+            }
+        }
     }
 
     /**

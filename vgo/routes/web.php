@@ -46,3 +46,6 @@ Route:: resource('/tipo_usuario', 'tipo_usuarioController');
 
 //Rota Usuários
 Route:: resource('/usu', 'usuController');
+
+//ROta Telefones
+Route:: resource('/telefone', 'telefoneController');

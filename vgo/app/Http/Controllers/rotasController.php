@@ -84,30 +84,6 @@ class rotasController extends Controller
             echo '<script>alert("Erro ao Salvar!"); </script>';
         }
 
-
-
-
-
-        //
-//        $locais = Locais::all();
-//
-//        $rota = new Rota();
-//
-//        $rota->nome = Input::get('nome');
-//        $rota->descricao = Input::get('descricao');
-//        $rota->img1 = Input::get('img1');
-//        $rota->img2 = Input::get('img2');
-//        $rota->locais_id = Input::get('local');
-//
-//        if ($rota-> save()){
-//            echo '<script>alert("Rota Cadastrada com Sucesso");</script>';
-//
-//            return view('rotas.nova', ['todLoc' => $locais ]);
-//
-//
-//        }else{
-//            echo '<script>alert("Erro ao Salvar!"); </script>';
-//        }
     }
 
     /**

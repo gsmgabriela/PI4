@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Ponto de Encontro:</label>
                 <div class="col-sm-5">
-                    <input class="form-control" name="ponto" value="{{$dados->img1}}" type="file" >{{$dados->img1}}</input>
+                    <input class="form-control" name="img1" value="{{$dados->img1}}" type="file" >{{$dados->img1}}</input>
                 </div>
             </div>
 

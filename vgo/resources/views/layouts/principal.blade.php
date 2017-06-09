@@ -38,6 +38,7 @@
                     <li><a href="@yield( 'rotas', route('rotas.index'))">Rotas</a></li>
                     <li><a href="@yield( 'usu', route('usu.index'))">Usuários</a></li>
                     <li><a href="@yield( 'tipo_usuario', route('tipo_usuario.index'))">Tipos de Usuários</a></li>
+
                 </ul>
             </div>
 
@@ -53,7 +54,7 @@
 
     <div class="form-group">
         <div class=" ">
-            <button type="submit" class="btn btn-primary btn-md add">Adicionar Novo</button>
+            <button type="submit" class="btn btn-primary btn-md add"> @yield('botaoSuperior', 'Adicionar Novo' )</button>
         </div>
     </div>
 </form>

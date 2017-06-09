@@ -123,19 +123,21 @@ class pontoDeEncontroController extends Controller
 
         $imagem = $request->file('img1');
 
-        $pasta = public_path() . '/imagensPonto';
+        $pasta = public_path() . '/imagens';
 
-        $nome_imagem = 'ponto' . time() . '.' . $imagem->getClientOriginalExtension();
+        $nome_imagem = 'rota' . time() . '.' . $imagem->getClientOriginalExtension();
 
-        // Move arquivo para pasta
         $nova_imagem = $imagem->move($pasta, $nome_imagem);
         $sub_var = substr($nova_imagem,34);
+//        return response()-> json($sub_var);
+
 
         $ponto = Ponto_de_encontro::find($id);
 
         $ponto -> nome = input::get('nome');
         $ponto -> descricao = input::get('descricao');
-        $ponto ->img1 = $sub_var;
+        $ponto->img1 = $sub_var;
+
 
 
         if($ponto->save()) {
